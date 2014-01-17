@@ -225,19 +225,9 @@ public class GameGui extends JFrame implements Runnable{
 		
 
 	private void updateBackground() {
-		rColor = (int) (Math.cos((timer/10)*(Math.PI/180))*120+128 + 0.5);
-		gColor = (int) (Math.cos((timer/16)*(Math.PI/180))*120+128 + 0.5);
-		bColor = (int) (Math.cos((timer/22)*(Math.PI/180))*120+128 + 0.5);
-		
-		
+		double midValue = 255 / 2;
+		rColor = (int) (Math.cos(Math.toRadians(timer/10)) * midValue + midValue + 0.5);
+		gColor = (int) (Math.cos(Math.toRadians(timer/16)) * midValue + midValue + 0.5);
+		bColor = (int) (Math.cos(Math.toRadians(timer/22)) * midValue + midValue + 0.5);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
