@@ -21,7 +21,7 @@ public class GameGui extends JFrame implements Runnable{
 	 * 					TODO List
 	 *  1. Add lives 
 	 *  2. Add different screens such as menu and death
-	 *  3. Make background more interesting (Slow color changing would be cool. Use int's for RGB?
+	 *  3. FIX DAT COLLISION DETECTION
 	 *  4. Add power-ups
 	 *  5. There's so many possibilities
 	 *  6. I'm excited
@@ -60,6 +60,7 @@ public class GameGui extends JFrame implements Runnable{
 		}
 	}
 
+	
 	//Updates enemy positions
 	public void eMove(){	
 		for(Enemy e : enemies){
@@ -85,16 +86,22 @@ public class GameGui extends JFrame implements Runnable{
 			}
 	}
 	// Separate methods for changing the value of xDirection and yDirection
+	
+
 	public void setxDirection(int xdir){
 		xDirection = xdir;
 	}
+	
+	
 	
 	public void setyDirection(int ydir){
 		yDirection = ydir;
 	}
 	
+	
 	// HandlerClass for key inputs
 	public class HandlerClass extends KeyAdapter{
+
 		public void keyPressed(KeyEvent event) {
 			if(event.getKeyCode() == KeyEvent.VK_LEFT){
 				setxDirection(-1);
@@ -127,6 +134,8 @@ public class GameGui extends JFrame implements Runnable{
 		}
 		
 	}
+	
+	
 	// Main Constructor for when the object is created in another Class
 	public GameGui(){
 		super("Title");
@@ -146,6 +155,8 @@ public class GameGui extends JFrame implements Runnable{
 		
 		
 	}
+	
+	
 	// I think this just takes an image of the screen, analyzes it, and paints over previous images. Its double buffering.
 	public void paint(Graphics g){
 		dbImage = createImage(getWidth(), getHeight());
@@ -153,6 +164,8 @@ public class GameGui extends JFrame implements Runnable{
 		paintComponent(dbg);
 		g.drawImage(dbImage, 0, 0, this);
 	}
+	
+	
 	// This will draw our stuffs for us
 	public void paintComponent (Graphics g){
 		g.setColor(Color.yellow);
@@ -171,7 +184,7 @@ public class GameGui extends JFrame implements Runnable{
 				if (e.spawned == false){
 					e.x = rand.nextInt(500) - 50;
 					e.y = rand.nextInt(500) - 50;
-						if(Math.sqrt((e.x - this.x)*(e.x - this.x) + (e.y - this.y)*(e.y - this.y)) >= 300){
+						if(Math.sqrt((e.x - 200)*(e.x - 200) + (e.y - 200)*(e.y - 200)) >= 300){
 							g.fillRect((int)Math.round(e.x), (int)Math.round(e.y), 10, 10);
 							e.xDirection = (this.x - e.x )/400;
 							e.yDirection = (this.y - e.y)/400;
@@ -212,9 +225,9 @@ public class GameGui extends JFrame implements Runnable{
 		
 
 	private void updateBackground() {
-		rColor = (int) (Math.cos(timer/100)*120+128 + 0.5);
-		gColor = (int) (Math.cos(timer/150)*120+128 + 0.5);
-		bColor = (int) (Math.cos(timer/200)*120+128 + 0.5);
+		rColor = (int) (Math.cos((timer/10)*(Math.PI/180))*120+128 + 0.5);
+		gColor = (int) (Math.cos((timer/16)*(Math.PI/180))*120+128 + 0.5);
+		bColor = (int) (Math.cos((timer/22)*(Math.PI/180))*120+128 + 0.5);
 		
 		
 	}
