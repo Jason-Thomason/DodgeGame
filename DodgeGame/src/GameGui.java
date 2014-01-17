@@ -95,10 +95,10 @@ public class GameGui extends JFrame implements Runnable{
 	// HandlerClass for key inputs
 	public class HandlerClass extends KeyAdapter{
 		public void keyPressed(KeyEvent event) {
-			if(event.getKeyCode() == event.VK_LEFT){
+			if(event.getKeyCode() == KeyEvent.VK_LEFT){
 				setxDirection(-1);
-				}	
-			if(event.getKeyCode() == event.VK_RIGHT){
+			}	
+			if(event.getKeyCode() == KeyEvent.VK_RIGHT){
 				setxDirection(1);
 			}
 			if(event.getKeyCode() == KeyEvent.VK_UP){
@@ -109,10 +109,10 @@ public class GameGui extends JFrame implements Runnable{
 			}
 		}
 		public void keyReleased(KeyEvent event) {
-			if(event.getKeyCode() == event.VK_LEFT){
+			if(event.getKeyCode() == KeyEvent.VK_LEFT){
 				setxDirection(0);
 			}	
-			if(event.getKeyCode() == event.VK_RIGHT){	
+			if(event.getKeyCode() == KeyEvent.VK_RIGHT){	
 				setxDirection(0);
 			}
 			if(event.getKeyCode() == KeyEvent.VK_UP){
