@@ -29,6 +29,7 @@ public class GameGui extends JFrame implements Runnable{
 	 */
 	
 	int x, y, xDirection, yDirection;
+	private int rColor, gColor, bColor;
 	Font font = new Font("Ariel", Font.BOLD, 15);
 	private Image dbImage;
 	private Graphics dbg;
@@ -36,7 +37,7 @@ public class GameGui extends JFrame implements Runnable{
 	private int timer = 0;
 	private int collisions = 0;
 	private int highScore = 0;
-	ArrayList<Enemy> AL = new ArrayList<Enemy>();
+	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	
 	public void move(){
 
@@ -61,7 +62,7 @@ public class GameGui extends JFrame implements Runnable{
 
 	//Updates enemy positions
 	public void eMove(){	
-		for(Enemy e : AL){
+		for(Enemy e : enemies){
 			e.x += e.xDirection;
 			e.y += e.yDirection;
 			if(timer/10 > highScore){
@@ -69,11 +70,11 @@ public class GameGui extends JFrame implements Runnable{
 			}
 		}
 			//Keeps enemy count higher as time goes on
-			if(AL.size() <= timer/1000){
-				AL.add(new Enemy());
+			if(enemies.size() <= timer/1000){
+				enemies.add(new Enemy());
 		}
 			//Collision detection
-			for(Enemy e : AL){
+			for(Enemy e : enemies){
 				if(e.x >= this.x - 10 && e.x <= this.x + 20 && e.y >= this.y - 20 && e.y <= this.y + 10){
 					e.spawned = false;
 					collisions++;
@@ -134,11 +135,10 @@ public class GameGui extends JFrame implements Runnable{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400, 400);
 		setLocationRelativeTo(null);
-		setBackground(Color.white);
 		setResizable(false);
 		setVisible(true);
 		addKeyListener(new HandlerClass());
-		AL.add(new Enemy());
+		enemies.add(new Enemy());
 
 		x = 200;
 		y = 200;
@@ -163,9 +163,10 @@ public class GameGui extends JFrame implements Runnable{
 		
 		
 		
-			for(int i = 0; i < AL.size(); i++){
-				if(AL.size() > 0){
-				Enemy e = AL.get(i);
+		
+			for(int i = 0; i < enemies.size(); i++){
+				if(enemies.size() > 0){
+				Enemy e = enemies.get(i);
 				g.setColor(Color.red);
 				if (e.spawned == false){
 					e.x = rand.nextInt(500) - 50;
@@ -179,8 +180,8 @@ public class GameGui extends JFrame implements Runnable{
 				}else if(e.spawned == true){
 					g.fillRect((int)Math.round(e.x), (int)Math.round(e.y), 10, 10);
 					if(Math.sqrt((e.x - this.x)*(e.x - this.x) + (e.y - this.y)*(e.y - this.y)) >= 400){
-						if(AL.size() > 0){
-						AL.remove(e);
+						if(enemies.size() > 0){
+						enemies.remove(e);
 					}
 				}
 			}
@@ -195,6 +196,8 @@ public class GameGui extends JFrame implements Runnable{
 			while(true){
 				move();
 				eMove();
+				updateBackground();
+				setBackground(new Color(rColor, gColor, bColor));
 				
 				timer++;
 				Thread.sleep(3);
@@ -204,6 +207,15 @@ public class GameGui extends JFrame implements Runnable{
 			System.out.println("Error in run");
 			// Not sure how to make it print what the error actually is
 		}
+		
+		}
+		
+
+	private void updateBackground() {
+		rColor = (int)Math.round(Math.cos(timer/100)*120+128);
+		gColor = (int)Math.round(Math.cos(timer/150)*120+128);
+		bColor = (int)Math.round(Math.cos(timer/200)*120+128);
+		
 		
 	}
 	
