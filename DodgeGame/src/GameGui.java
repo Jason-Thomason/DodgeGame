@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 public class GameGui extends JFrame implements Runnable{
 
 	/*
-	 * 					To-Do List
+	 * 					TODO List
 	 *  1. Add lives 
 	 *  2. Add different screens such as menu and death
 	 *  3. Make background more interesting (Slow color changing would be cool. Use int's for RGB?
