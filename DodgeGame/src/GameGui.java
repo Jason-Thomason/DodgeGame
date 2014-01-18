@@ -138,7 +138,6 @@ public class GameGui extends JFrame implements Runnable{
 	
 	// Main Constructor for when the object is created in another Class
 	public GameGui(){
-		super("Title");
 		
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,6 +145,7 @@ public class GameGui extends JFrame implements Runnable{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
+		
 		addKeyListener(new HandlerClass());
 		enemies.add(new Enemy());
 
