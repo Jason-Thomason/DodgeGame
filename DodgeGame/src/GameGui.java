@@ -76,7 +76,7 @@ public class GameGui extends JFrame implements Runnable{
 		}
 			//Collision detection
 			for(Enemy e : enemies){
-				if(e.x >= this.x - 10 && e.x <= this.x + 20 && e.y >= this.y - 20 && e.y <= this.y + 10){
+				if(e.x >= this.x - 10 && e.x <= this.x + 20 && e.y >= this.y - 20 && e.y <= this.y + 10 && e.spawned == true){
 					e.spawned = false;
 					collisions++;
 					System.out.println("Collision " + collisions);
@@ -229,5 +229,17 @@ public class GameGui extends JFrame implements Runnable{
 		rColor = (int) (Math.cos(Math.toRadians(timer/10)) * midValue + midValue + 0.5);
 		gColor = (int) (Math.cos(Math.toRadians(timer/16)) * midValue + midValue + 0.5);
 		bColor = (int) (Math.cos(Math.toRadians(timer/22)) * midValue + midValue + 0.5);
+
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
