@@ -21,7 +21,7 @@ public class Player {
 	}
 	
 	public void render(Graphics g){
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.BLUE);
 		g.fillRect(x, y, 20, 20);
 	}
 	

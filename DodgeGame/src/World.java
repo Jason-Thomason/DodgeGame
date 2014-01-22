@@ -6,6 +6,7 @@ public class World {
 
 	Player player1 = new Player();
 	Background background = new Background();
+	HUD hud = new HUD();
 	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	
 	public World(){
@@ -15,6 +16,7 @@ public class World {
 	public void tick(){
 		player1.tick();
 		background.tick();
+		hud.tick();
 		for(int i=0; i<enemies.size(); i++){
 			
 			enemies.get(i).tick();
@@ -35,6 +37,7 @@ public class World {
 		for(Enemy e: enemies){
 			e.render(g);
 		}
+		hud.render(g);
 	}
 	
 	public void checkCollisions(){
