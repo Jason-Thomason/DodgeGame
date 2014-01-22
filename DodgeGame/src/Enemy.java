@@ -10,16 +10,17 @@ public class Enemy {
 	private boolean spawned = false;
 	Random rand = new Random();
 	private double x,  y , xDirection, yDirection;
+	private int speedReduction = 75;
 	
 	public Enemy(){
 		if(spawned == false){
-			while(Math.sqrt((x-200)*(x-200) + (y-200)*(y-200))<=300){
+			while(Math.sqrt((x-(Window.width/2))*(x-(Window.width/2)) + (y-(Window.height/2))*(y-(Window.height/2)))<=300){
 			x = rand.nextInt(500)-50;
 			y = rand.nextInt(500)-50;
 		}
 				if(Math.sqrt((x-200)*(x-200) + (y-200)*(y-200))>=300){
-					xDirection = (Player.x-this.x)/400;
-					yDirection = (Player.y-this.y)/400;
+					xDirection = (Player.x-this.x)/speedReduction;
+					yDirection = (Player.y-this.y)/speedReduction;
 					spawned = true;
 			}
 		}
@@ -40,7 +41,7 @@ public class Enemy {
 		public void move(){	
 				this.x += this.xDirection;
 				this.y += this.yDirection;
-				if(Math.sqrt((x-200)*(x-200) + (y-200)*(y-200))>=300){
+				if(Math.sqrt((x-(Window.width/2))*(x-(Window.width/2)) + (y-(Window.height/2))*(y-(Window.height/2)))>=300){
 					spawned = false;
 				}
 				

@@ -46,7 +46,7 @@ public class World {
 			if(e.getx() >= player1.x - 10 && e.getx() <= player1.x + 20 && e.gety() >= player1.y - 20 && e.gety() <= player1.y + 10 && e.getspawned() == true){
 				e.setspawned(false);
 				
-				ClayJason.timer -= ClayJason.timer/8;
+				ClayJason.timer -= ClayJason.timer/10;
 			}
 		}
 	}

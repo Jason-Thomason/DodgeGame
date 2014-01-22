@@ -6,14 +6,14 @@ import java.awt.event.KeyEvent;
 
 public class Player {
 
-	public static int x, y, speed=1;
+	public static int x, y, speed=7;
 	
 	HandlerClass HandlerClass = new HandlerClass();
 	
 	
 	public Player(){
-		x = 200;
-		y = 200;
+		x = Window.width/2;
+		y = Window.height/2;
 	}
 	
 	public void tick(){

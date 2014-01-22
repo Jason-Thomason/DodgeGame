@@ -15,6 +15,11 @@ public class ClayJason implements Runnable{
 	
 	public static int timer = 0, highScore=0;
 	
+	private int loops;
+	private static int FPS = 60, MAX_FRAME_SKIP = 2, SKIP_TICKS = 1000/FPS;
+	private long CURRENT_TIME = System.currentTimeMillis();
+	
+	
 	public static void main (String[] args){
 		System.out.println("Main");
 		new ClayJason();	
@@ -45,10 +50,16 @@ public class ClayJason implements Runnable{
 		
 		try{
 			while(true) {
-				tick();
-				render(g);
 				
-				Thread.sleep(1);
+				loops = 0;
+				//Calculate data as long as we are behind schedule and we havn't skipped display too much
+				while(System.currentTimeMillis() > CURRENT_TIME && loops < MAX_FRAME_SKIP){
+					tick();
+					
+					CURRENT_TIME += SKIP_TICKS;
+					loops++;
+				}
+				render(g);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
